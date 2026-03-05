@@ -1,0 +1,20 @@
+/* Font Adjuster — per-site font, size, and line-height overrides */
+
+body[data-collabora-font-adjuster="active"] p,
+body[data-collabora-font-adjuster="active"] li,
+body[data-collabora-font-adjuster="active"] td,
+body[data-collabora-font-adjuster="active"] th,
+body[data-collabora-font-adjuster="active"] span,
+body[data-collabora-font-adjuster="active"] div,
+body[data-collabora-font-adjuster="active"] article,
+body[data-collabora-font-adjuster="active"] section,
+body[data-collabora-font-adjuster="active"] main,
+body[data-collabora-font-adjuster="active"] blockquote,
+body[data-collabora-font-adjuster="active"] dd,
+body[data-collabora-font-adjuster="active"] dt,
+body[data-collabora-font-adjuster="active"] figcaption,
+body[data-collabora-font-adjuster="active"] label {
+  font-family: var(--collabora-font-family, inherit) !important;
+  font-size: var(--collabora-font-size, inherit) !important;
+  line-height: var(--collabora-line-height, inherit) !important;
+}

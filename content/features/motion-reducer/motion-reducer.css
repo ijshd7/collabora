@@ -1,0 +1,18 @@
+/* Motion Reducer — pauses CSS animations and transitions */
+
+body[data-collabora-motion-reducer="active"] *,
+body[data-collabora-motion-reducer="active"] *::before,
+body[data-collabora-motion-reducer="active"] *::after {
+  animation-play-state: paused !important;
+  transition-duration: 0s !important;
+  scroll-behavior: auto !important;
+}
+
+/* Preserve short transitions on interactive elements for usability */
+body[data-collabora-motion-reducer="active"] button,
+body[data-collabora-motion-reducer="active"] a,
+body[data-collabora-motion-reducer="active"] input,
+body[data-collabora-motion-reducer="active"] select,
+body[data-collabora-motion-reducer="active"] [role="button"] {
+  transition-duration: 0.1s !important;
+}

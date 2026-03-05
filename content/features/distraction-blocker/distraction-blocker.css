@@ -1,0 +1,28 @@
+/* Distraction Blocker — hides ads, sidebars, auto-playing media */
+
+/* Ads — common selectors */
+body[data-collabora-distraction-blocker="active"] [id*="ad-"],
+body[data-collabora-distraction-blocker="active"] [id*="ad_"],
+body[data-collabora-distraction-blocker="active"] [class*="ad-container"],
+body[data-collabora-distraction-blocker="active"] [class*="ad-wrapper"],
+body[data-collabora-distraction-blocker="active"] [class*="advertisement"],
+body[data-collabora-distraction-blocker="active"] [class*="ad-slot"],
+body[data-collabora-distraction-blocker="active"] [data-ad],
+body[data-collabora-distraction-blocker="active"] [data-ad-slot],
+body[data-collabora-distraction-blocker="active"] iframe[src*="doubleclick"],
+body[data-collabora-distraction-blocker="active"] iframe[src*="googlesyndication"],
+body[data-collabora-distraction-blocker="active"] iframe[src*="amazon-adsystem"],
+body[data-collabora-distraction-blocker="active"] .adsbygoogle,
+body[data-collabora-distraction-blocker="active"] [id*="google_ads"],
+body[data-collabora-distraction-blocker="active"] [class*="sponsored"] {
+  display: none !important;
+}
+
+/* Sidebars — moderate/aggressive only (JS adds data-collabora-db-level) */
+body[data-collabora-distraction-blocker="active"][data-collabora-db-level="aggressive"] aside,
+body[data-collabora-distraction-blocker="active"][data-collabora-db-level="aggressive"] [role="complementary"],
+body[data-collabora-distraction-blocker="active"][data-collabora-db-level="aggressive"] [class*="sidebar"],
+body[data-collabora-distraction-blocker="active"][data-collabora-db-level="aggressive"] [class*="side-bar"],
+body[data-collabora-distraction-blocker="active"][data-collabora-db-level="aggressive"] [class*="rail"] {
+  display: none !important;
+}

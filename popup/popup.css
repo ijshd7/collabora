@@ -1,0 +1,214 @@
+/* Collabora — Popup Styles */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 360px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #1a1a2e;
+  color: #eee;
+  font-size: 14px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #2a2a4e;
+}
+
+.header__title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #4A90D9;
+}
+
+.header__site {
+  font-size: 12px;
+  color: #aaa;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Features list */
+.features {
+  padding: 8px 0;
+  max-height: 480px;
+  overflow-y: auto;
+}
+
+.feature {
+  padding: 0 16px;
+}
+
+.feature__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.feature__name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Toggle switch */
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.toggle__input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle__slider {
+  position: absolute;
+  inset: 0;
+  background: #444;
+  border-radius: 22px;
+  transition: background 0.2s;
+}
+
+.toggle__slider::before {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.toggle__input:checked + .toggle__slider {
+  background: #4A90D9;
+}
+
+.toggle__input:checked + .toggle__slider::before {
+  transform: translateX(18px);
+}
+
+/* Feature settings (expandable) */
+.feature__settings {
+  display: none;
+  padding: 0 0 10px 12px;
+  border-left: 2px solid #4A90D9;
+  margin-left: 4px;
+  margin-bottom: 4px;
+}
+
+.feature__settings.is-visible {
+  display: block;
+}
+
+/* Settings controls */
+.setting {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+  font-size: 13px;
+  gap: 8px;
+}
+
+.setting__label {
+  color: #aaa;
+  white-space: nowrap;
+  min-width: 80px;
+}
+
+.setting__select {
+  flex: 1;
+  background: #2a2a4e;
+  color: #eee;
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 4px 6px;
+  font-size: 12px;
+  max-width: 160px;
+}
+
+.setting__range {
+  flex: 1;
+  max-width: 140px;
+  accent-color: #4A90D9;
+}
+
+.setting__custom-group {
+  margin-top: 4px;
+}
+
+/* Divider */
+.divider {
+  padding: 8px 16px 4px;
+  font-size: 11px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-top: 1px solid #2a2a4e;
+  margin-top: 4px;
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  gap: 8px;
+  padding: 10px 16px;
+  border-top: 1px solid #2a2a4e;
+}
+
+.footer__btn {
+  flex: 1;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  background: #4A90D9;
+  color: #fff;
+  font-family: inherit;
+}
+
+.footer__btn:hover {
+  background: #357ABD;
+}
+
+.footer__btn--secondary {
+  background: #333;
+  color: #aaa;
+}
+
+.footer__btn--secondary:hover {
+  background: #444;
+  color: #eee;
+}
+
+/* Scrollbar */
+.features::-webkit-scrollbar {
+  width: 4px;
+}
+
+.features::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.features::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}

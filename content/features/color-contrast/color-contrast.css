@@ -1,0 +1,11 @@
+/* Color Contrast Adjuster — CSS filter presets */
+
+/* Re-invert images/video in cool (inverted) mode so they display correctly */
+body[data-collabora-color-contrast="active"][data-collabora-cc-mode="cool"] img,
+body[data-collabora-color-contrast="active"][data-collabora-cc-mode="cool"] video,
+body[data-collabora-color-contrast="active"][data-collabora-cc-mode="cool"] canvas,
+body[data-collabora-color-contrast="active"][data-collabora-cc-mode="cool"] svg,
+body[data-collabora-color-contrast="active"][data-collabora-cc-mode="cool"] picture,
+body[data-collabora-color-contrast="active"][data-collabora-cc-mode="cool"] [data-collabora] {
+  filter: invert(1) hue-rotate(180deg) !important;
+}

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collabora</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="header">
+    <h1 class="header__title">Collabora</h1>
+    <span class="header__site" id="site-key"></span>
+  </header>
+
+  <main class="features" id="features-list">
+    <!-- Phase 1 -->
+    <div class="feature" data-feature="motion-reducer">
+      <div class="feature__row">
+        <span class="feature__name">Motion Reducer</span>
+        <label class="toggle">
+          <input type="checkbox" class="toggle__input" data-toggle="motion-reducer" aria-label="Toggle Motion Reducer">
+          <span class="toggle__slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="feature" data-feature="distraction-blocker">
+      <div class="feature__row">
+        <span class="feature__name">Distraction Blocker</span>
+        <label class="toggle">
+          <input type="checkbox" class="toggle__input" data-toggle="distraction-blocker" aria-label="Toggle Distraction Blocker">
+          <span class="toggle__slider"></span>
+        </label>
+      </div>
+      <div class="feature__settings" data-settings="distraction-blocker">
+        <label class="setting">
+          <span class="setting__label">Level</span>
+          <select class="setting__select" data-setting="level">
+            <option value="gentle">Gentle (ads only)</option>
+            <option value="moderate" selected>Moderate (+ autoplay)</option>
+            <option value="aggressive">Aggressive (+ sidebars)</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <div class="feature" data-feature="font-adjuster">
+      <div class="feature__row">
+        <span class="feature__name">Font Adjuster</span>
+        <label class="toggle">
+          <input type="checkbox" class="toggle__input" data-toggle="font-adjuster" aria-label="Toggle Font Adjuster">
+          <span class="toggle__slider"></span>
+        </label>
+      </div>
+      <div class="feature__settings" data-settings="font-adjuster">
+        <label class="setting">
+          <span class="setting__label">Font</span>
+          <select class="setting__select" data-setting="fontFamily">
+            <option value="system">System Default</option>
+            <option value="serif">Serif</option>
+            <option value="sans-serif">Sans-Serif</option>
+            <option value="opendyslexic">OpenDyslexic</option>
+            <option value="lexend">Lexend</option>
+          </select>
+        </label>
+        <label class="setting">
+          <span class="setting__label">Size: <span data-value="fontSize">16</span>px</span>
+          <input type="range" class="setting__range" data-setting="fontSize" min="12" max="32" value="16">
+        </label>
+        <label class="setting">
+          <span class="setting__label">Line Height: <span data-value="lineHeight">1.6</span></span>
+          <input type="range" class="setting__range" data-setting="lineHeight" min="1.0" max="3.0" step="0.1" value="1.6">
+        </label>
+      </div>
+    </div>
+
+    <div class="feature" data-feature="reading-ruler">
+      <div class="feature__row">
+        <span class="feature__name">Reading Ruler</span>
+        <label class="toggle">
+          <input type="checkbox" class="toggle__input" data-toggle="reading-ruler" aria-label="Toggle Reading Ruler">
+          <span class="toggle__slider"></span>
+        </label>
+      </div>
+      <div class="feature__settings" data-settings="reading-ruler">
+        <label class="setting">
+          <span class="setting__label">Strip Height: <span data-value="stripHeight">40</span>px</span>
+          <input type="range" class="setting__range" data-setting="stripHeight" min="20" max="120" value="40">
+        </label>
+        <label class="setting">
+          <span class="setting__label">Dim Opacity: <span data-value="opacity">0.6</span></span>
+          <input type="range" class="setting__range" data-setting="opacity" min="0.2" max="0.9" step="0.1" value="0.6">
+        </label>
+      </div>
+    </div>
+
+    <div class="feature" data-feature="progress-indicator">
+      <div class="feature__row">
+        <span class="feature__name">Progress Indicator</span>
+        <label class="toggle">
+          <input type="checkbox" class="toggle__input" data-toggle="progress-indicator" aria-label="Toggle Progress Indicator">
+          <span class="toggle__slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Phase 2 divider -->
+    <div class="divider">Focus Tools</div>
+
+    <div class="feature" data-feature="focus-reader">
+      <div class="feature__row">
+        <span class="feature__name">Focus Reader (TTS)</span>
+        <label class="toggle">
+          <input type="checkbox" class="toggle__input" data-toggle="focus-reader" aria-label="Toggle Focus Reader">
+          <span class="toggle__slider"></span>
+        </label>
+      </div>
+      <div class="feature__settings" data-settings="focus-reader">
+        <label class="setting">
+          <span class="setting__label">Speed: <span data-value="rate">1.0</span>x</span>
+          <input type="range" class="setting__range" data-setting="rate" min="0.5" max="3" step="0.25" value="1.0">
+        </label>
+      </div>
+    </div>
+
+    <div class="feature" data-feature="color-contrast">
+      <div class="feature__row">
+        <span class="feature__name">Color Contrast</span>
+        <label class="toggle">
+          <input type="checkbox" class="toggle__input" data-toggle="color-contrast" aria-label="Toggle Color Contrast">
+          <span class="toggle__slider"></span>
+        </label>
+      </div>
+      <div class="feature__settings" data-settings="color-contrast">
+        <label class="setting">
+          <span class="setting__label">Mode</span>
+          <select class="setting__select" data-setting="mode">
+            <option value="warm">Warm</option>
+            <option value="cool">Cool (Dark)</option>
+            <option value="high-contrast">High Contrast</option>
+            <option value="custom">Custom</option>
+          </select>
+        </label>
+        <div class="setting__custom-group" data-custom-group="color-contrast" style="display: none;">
+          <label class="setting">
+            <span class="setting__label">Brightness: <span data-value="brightness">1.0</span></span>
+            <input type="range" class="setting__range" data-setting="brightness" min="0.5" max="1.5" step="0.05" value="1.0">
+          </label>
+          <label class="setting">
+            <span class="setting__label">Contrast: <span data-value="contrast">1.0</span></span>
+            <input type="range" class="setting__range" data-setting="contrast" min="0.5" max="2.0" step="0.05" value="1.0">
+          </label>
+          <label class="setting">
+            <span class="setting__label">Saturation: <span data-value="saturation">1.0</span></span>
+            <input type="range" class="setting__range" data-setting="saturation" min="0" max="2.0" step="0.05" value="1.0">
+          </label>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <button class="footer__btn" id="apply-all">Apply to all sites</button>
+    <button class="footer__btn footer__btn--secondary" id="reset-site">Reset this site</button>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

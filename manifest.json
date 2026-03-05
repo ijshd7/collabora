@@ -1,0 +1,91 @@
+{
+  "manifest_version": 3,
+  "name": "Collabora — Reading & Focus Suite",
+  "version": "0.1.0",
+  "description": "ADHD and cognitive load support: reduce distractions, improve readability, and maintain focus.",
+
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+
+  "host_permissions": [
+    "<all_urls>"
+  ],
+
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    }
+  },
+
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
+
+  "commands": {
+    "toggle-motion-reducer": {
+      "suggested_key": { "default": "Alt+Shift+M" },
+      "description": "Toggle Motion Reducer"
+    },
+    "toggle-distraction-blocker": {
+      "suggested_key": { "default": "Alt+Shift+D" },
+      "description": "Toggle Distraction Blocker"
+    },
+    "toggle-font-adjuster": {
+      "suggested_key": { "default": "Alt+Shift+F" },
+      "description": "Toggle Font Adjuster"
+    },
+    "toggle-reading-ruler": {
+      "suggested_key": { "default": "Alt+Shift+R" },
+      "description": "Toggle Reading Ruler"
+    },
+    "toggle-focus-reader": {
+      "description": "Toggle Focus Reader"
+    }
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "css": [
+        "content/styles/collabora-base.css",
+        "content/features/motion-reducer/motion-reducer.css",
+        "content/features/distraction-blocker/distraction-blocker.css",
+        "content/features/font-adjuster/font-adjuster.css",
+        "content/features/reading-ruler/reading-ruler.css",
+        "content/features/progress-indicator/progress-indicator.css",
+        "content/features/focus-reader/focus-reader.css",
+        "content/features/color-contrast/color-contrast.css"
+      ],
+      "js": [
+        "content/shared/site-key.js",
+        "content/shared/storage.js",
+        "content/shared/dom-helpers.js",
+        "content/shared/feature-manager.js",
+        "content/features/motion-reducer/motion-reducer.js",
+        "content/features/distraction-blocker/distraction-blocker.js",
+        "content/features/font-adjuster/font-adjuster.js",
+        "content/features/reading-ruler/reading-ruler.js",
+        "content/features/progress-indicator/progress-indicator.js",
+        "content/features/focus-reader/focus-reader.js",
+        "content/features/color-contrast/color-contrast.js",
+        "content/bootstrap.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}

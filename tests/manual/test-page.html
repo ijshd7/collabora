@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collabora — Manual Test Page</title>
+  <style>
+    body {
+      font-family: Georgia, serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.6;
+      color: #333;
+    }
+    h1 { color: #1a1a2e; }
+    h2 { color: #4A90D9; margin-top: 40px; }
+
+    /* Sidebar */
+    .layout { display: flex; gap: 20px; }
+    .main-content { flex: 3; }
+    .sidebar {
+      flex: 1;
+      background: #f5f5f5;
+      padding: 16px;
+      border-radius: 8px;
+    }
+    .sidebar h3 { font-size: 14px; color: #666; }
+
+    /* Fake ads */
+    .ad-container {
+      background: #ffe0e0;
+      border: 2px dashed #f66;
+      padding: 20px;
+      text-align: center;
+      margin: 20px 0;
+      font-size: 12px;
+      color: #f66;
+    }
+    .advertisement {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 11px;
+    }
+
+    /* Animations */
+    .animated-box {
+      width: 100px;
+      height: 100px;
+      background: #4A90D9;
+      border-radius: 8px;
+      animation: bounce 2s infinite;
+      margin: 20px 0;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-30px); }
+    }
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid #eee;
+      border-top: 4px solid #4A90D9;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      display: inline-block;
+      margin: 10px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Floating element */
+    .floating-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #333;
+      color: white;
+      padding: 12px;
+      text-align: center;
+      z-index: 1000;
+    }
+
+    /* Long text for progress indicator */
+    .long-text p { margin-bottom: 16px; }
+  </style>
+</head>
+<body>
+  <h1>Collabora Test Page</h1>
+  <p>Use this page to manually test each feature of the Collabora extension.</p>
+
+  <div class="layout">
+    <article class="main-content">
+
+      <!-- Motion Reducer Test -->
+      <h2>1. Motion Reducer Test</h2>
+      <p>The animated box below should stop bouncing when Motion Reducer is enabled:</p>
+      <div class="animated-box"></div>
+      <p>Spinners should also stop: <span class="spinner"></span> <span class="spinner"></span></p>
+      <p>GIF test (uses a placeholder data URI):</p>
+      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Tiny GIF" width="100" height="100" style="background: #ccc;">
+
+      <!-- Distraction Blocker Test -->
+      <h2>2. Distraction Blocker Test</h2>
+      <div class="ad-container">FAKE AD — This should be hidden by Distraction Blocker</div>
+      <p>The ad above and the sponsored content below should disappear:</p>
+      <div class="advertisement">Sponsored: Buy our amazing product!</div>
+      <p>The sidebar on the right should also be hidden in aggressive mode.</p>
+
+      <!-- Auto-playing media -->
+      <h2>Auto-playing Media</h2>
+      <p>This video has autoplay (muted so it actually autoplays):</p>
+      <video width="320" height="180" autoplay muted loop style="background: #000; display: block;">
+        <source src="" type="video/mp4">
+        Your browser does not support video. (No source — this tests autoplay pause behavior.)
+      </video>
+
+      <!-- Font Adjuster Test -->
+      <h2>3. Font Adjuster Test</h2>
+      <p>This paragraph should change font, size, and line height when Font Adjuster is enabled. Try different fonts including OpenDyslexic and Lexend.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+
+      <!-- Reading Ruler Test -->
+      <h2>4. Reading Ruler Test</h2>
+      <p>Move your mouse over this text to see the reading ruler in action. The area above and below the current line should be dimmed.</p>
+      <p>Try using arrow keys for keyboard-mode navigation through these lines of text. Each line should be individually readable with the ruler highlighting it.</p>
+      <p>The ruler strip height and opacity can be adjusted from the popup settings panel.</p>
+
+      <!-- Progress Indicator Test -->
+      <h2>5. Progress Indicator Test</h2>
+      <p>Scroll this page to see the progress bar at the top and the read-time estimate. The bar should fill as you scroll down.</p>
+
+      <!-- Focus Reader Test -->
+      <h2>6. Focus Reader (TTS) Test</h2>
+      <p>Enable Focus Reader and click Play. Each word should be highlighted as it is spoken. Use the speed slider and voice selector to customize the reading experience.</p>
+      <p>The quick brown fox jumps over the lazy dog. This is a simple sentence for testing word-by-word highlighting with the Web Speech API.</p>
+
+      <!-- Color Contrast Test -->
+      <h2>7. Color Contrast Test</h2>
+      <p>Try each color contrast mode:</p>
+      <ul>
+        <li><strong>Warm:</strong> Adds a subtle sepia tone, reducing blue light</li>
+        <li><strong>Cool:</strong> Inverts colors for a dark-mode effect (images should remain normal)</li>
+        <li><strong>High Contrast:</strong> Increases contrast and brightness</li>
+        <li><strong>Custom:</strong> Adjust brightness, contrast, and saturation sliders</li>
+      </ul>
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='100'%3E%3Crect fill='%234A90D9' width='200' height='100' rx='8'/%3E%3Ctext x='50%25' y='50%25' fill='white' text-anchor='middle' dy='.3em' font-family='sans-serif'%3ETest Image%3C/text%3E%3C/svg%3E" alt="Test image for color contrast">
+      <p>The image above should remain correctly colored in Cool (inverted) mode.</p>
+
+      <!-- Long text for progress testing -->
+      <h2>Long Article (Progress Indicator)</h2>
+      <div class="long-text">
+        <p>This section contains extended text to test the progress indicator and read-time estimation. When the progress indicator is enabled, you should see a bar at the top of the page filling as you scroll, along with an estimated reading time in the top-right corner.</p>
+        <p>The human brain processes visual information at remarkable speed, but sustained attention requires considerable cognitive effort. For individuals with ADHD, managing this cognitive load while reading online content presents unique challenges. Distracting animations, auto-playing media, and cluttered layouts all compete for attention, making it difficult to focus on the primary content.</p>
+        <p>Research has shown that reducing visual noise, increasing text readability, and providing progress feedback can significantly improve reading comprehension and focus. Tools like reading rulers help guide the eye along individual lines of text, while font adjustments can make content more accessible for those with dyslexia or other reading difficulties.</p>
+        <p>Text-to-speech technology adds another dimension to accessibility. By combining visual highlighting with auditory feedback, readers can maintain their place more easily and engage with content through multiple sensory channels. The Web Speech API makes this possible directly in the browser without any external services.</p>
+        <p>Color adjustments serve a dual purpose: reducing eye strain during extended reading sessions and improving contrast for better readability. Warm filters reduce blue light exposure, while high-contrast modes can help text stand out against backgrounds that might otherwise cause reading fatigue.</p>
+        <p>The combination of these tools creates a comprehensive reading environment that adapts to individual needs. Each feature can be toggled independently and configured per-site, recognizing that different websites may require different levels of accommodation.</p>
+        <p>Progress indicators provide a sense of accomplishment and help with time management, both of which are important for individuals who may struggle with task persistence. Knowing how much of an article remains can help maintain motivation to continue reading.</p>
+        <p>Motion reduction is perhaps the most immediately impactful feature for ADHD users. Animated advertisements, spinning loading indicators, and auto-playing videos are all potent attention magnets that pull focus away from the content a user is trying to read. By pausing these distractions, the reading environment becomes significantly calmer.</p>
+      </div>
+
+    </article>
+
+    <aside class="sidebar">
+      <h3>Sidebar Content</h3>
+      <p>This sidebar should be hidden when Distraction Blocker is set to aggressive mode.</p>
+      <ul>
+        <li>Related article 1</li>
+        <li>Related article 2</li>
+        <li>Related article 3</li>
+      </ul>
+      <div class="advertisement">Sidebar Ad: Special Offer!</div>
+    </aside>
+  </div>
+
+  <!-- Floating banner -->
+  <div class="floating-banner">
+    This is a floating banner. It should be neutralized by Distraction Blocker (aggressive mode).
+  </div>
+</body>
+</html>
