@@ -5,7 +5,7 @@ A Chrome extension providing ADHD and cognitive load support. Reduce distraction
 ## Features
 
 - **Motion Reducer** — Pauses GIFs, CSS animations, and auto-playing media to reduce visual noise
-- **Distraction Blocker** — Strips ads, sidebars, auto-playing media, and floating elements with three intensity levels (gentle, moderate, aggressive)
+- **Distraction Blocker** — Strips ads, sidebars, auto-playing media, and floating elements with three intensity levels (gentle, moderate, aggressive). Optional toggle to hide comment sections.
 - **Font Adjuster** — Per-site font family, size, and line-height customization; includes accessibility-friendly fonts like OpenDyslexic and Lexend
 - **Reading Ruler** — A focus overlay that dims everything except the line you're reading, helping maintain your place in long text
 - **Progress Indicator** — Displays a scroll progress bar and estimated read time for the current page
@@ -32,9 +32,8 @@ Click the extension icon to open the popup. Each feature has a toggle switch and
 | `Alt+Shift+D` | Toggle Distraction Blocker |
 | `Alt+Shift+F` | Toggle Font Adjuster |
 | `Alt+Shift+R` | Toggle Reading Ruler |
-| `Alt+Shift+T` | Toggle Focus Reader |
 
-Shortcuts can be customized at `chrome://extensions/shortcuts`.
+Focus Reader has no default shortcut; assign one at `chrome://extensions/shortcuts`. All shortcuts can be customized there.
 
 ## Architecture
 
@@ -49,14 +48,17 @@ collabora/
 │   ├── features/              # One folder per feature (JS + CSS)
 │   └── styles/                # Base CSS custom properties
 ├── popup/                     # Extension popup UI
-└── tests/manual/              # Manual test page
+└── tests/
+    ├── manual/                # Manual test page
+    └── unit/                  # Jest unit tests
 ```
 
 All features are independently toggleable and use a shared registration system (`feature-manager.js`). CSS is always loaded but gated behind `body[data-collabora-{feature}="active"]` attributes, so toggling is instant. Per-site preferences are stored in `chrome.storage.local` with global/site-specific merge logic.
 
 ## Testing
 
-Open `tests/manual/test-page.html` in the browser with the extension loaded. The page includes test sections for each feature: animated elements, fake ads, long-form text, autoplay media, and color test images.
+- **Automated:** Run `npm test` for the Jest unit test suite (site-key, storage, feature-manager, dom-helpers, distraction-blocker, service-worker).
+- **Manual:** Open `tests/manual/test-page.html` in the browser with the extension loaded. The page includes test sections for each feature: animated elements, fake ads, comments, long-form text, autoplay media, and color test images.
 
 ## License
 

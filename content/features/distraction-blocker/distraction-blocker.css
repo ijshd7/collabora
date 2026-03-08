@@ -26,3 +26,16 @@ body[data-collabora-distraction-blocker="active"][data-collabora-db-level="aggre
 body[data-collabora-distraction-blocker="active"][data-collabora-db-level="aggressive"] [class*="rail"] {
   display: none !important;
 }
+
+/* Comments — when hideComments is enabled */
+body[data-collabora-distraction-blocker="active"][data-collabora-db-hide-comments="true"] #comments,
+body[data-collabora-distraction-blocker="active"][data-collabora-db-hide-comments="true"] #comment-section,
+body[data-collabora-distraction-blocker="active"][data-collabora-db-hide-comments="true"] #disqus_thread,
+body[data-collabora-distraction-blocker="active"][data-collabora-db-hide-comments="true"] [id*="comment"],
+body[data-collabora-distraction-blocker="active"][data-collabora-db-hide-comments="true"] [data-component="comments"],
+body[data-collabora-distraction-blocker="active"][data-collabora-db-hide-comments="true"] [class*="comment-section"],
+body[data-collabora-distraction-blocker="active"][data-collabora-db-hide-comments="true"] [class*="comments-section"],
+body[data-collabora-distraction-blocker="active"][data-collabora-db-hide-comments="true"] .fb-comments,
+body[data-collabora-distraction-blocker="active"][data-collabora-db-hide-comments="true"] iframe[src*="disqus.com"] {
+  display: none !important;
+}

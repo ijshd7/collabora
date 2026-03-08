@@ -90,11 +90,16 @@
   }
 
   Collabora.features.register('distraction-blocker', {
-    defaults: { enabled: false, level: 'moderate' },
+    defaults: { enabled: false, level: 'moderate', hideComments: false },
 
     enable: function (settings) {
       var level = settings.level || 'moderate';
+      var hideComments = !!settings.hideComments;
       document.body.setAttribute('data-collabora-db-level', level);
+
+      if (hideComments) {
+        document.body.setAttribute('data-collabora-db-hide-comments', 'true');
+      }
 
       // Moderate and aggressive: pause auto-playing media
       if (level === 'moderate' || level === 'aggressive') {
@@ -110,13 +115,30 @@
         neutralizeFloaters();
       }
 
-      // Watch for dynamically injected ads and media
-      observerId = Collabora.dom.observeDOM('iframe, [class*="ad"], video, audio', function (el) {
+      // Build observer selector (include comment containers when hideComments is on)
+      var observerSelector = 'iframe, [class*="ad"], video, audio';
+      if (hideComments) {
+        observerSelector += ', #comments, #comment-section, #disqus_thread, [data-component="comments"], [class*="comment-section"], [class*="comments-section"], .fb-comments';
+      }
+
+      // Watch for dynamically injected ads, media, and comment containers
+      observerId = Collabora.dom.observeDOM(observerSelector, function (el) {
         if (el.tagName === 'IFRAME') {
           var src = el.src || '';
           if (src.match(/doubleclick|googlesyndication|amazon-adsystem/i)) {
             hideElement(el);
           }
+          if (hideComments && src.match(/disqus\.com/i)) {
+            hideElement(el);
+          }
+        }
+        if (hideComments) {
+          var isCommentEl = el.id === 'comments' || el.id === 'comment-section' || el.id === 'disqus_thread' ||
+            el.getAttribute('data-component') === 'comments' ||
+            (el.classList && el.classList.contains('fb-comments')) ||
+            (el.className && String(el.className).indexOf('comment-section') !== -1) ||
+            (el.className && String(el.className).indexOf('comments-section') !== -1);
+          if (isCommentEl) hideElement(el);
         }
         if ((level === 'moderate' || level === 'aggressive') &&
             (el.tagName === 'VIDEO' || el.tagName === 'AUDIO')) {
@@ -132,6 +154,7 @@
 
     disable: function () {
       document.body.removeAttribute('data-collabora-db-level');
+      document.body.removeAttribute('data-collabora-db-hide-comments');
 
       // Unhide blocked elements
       document.querySelectorAll('[data-collabora-blocked]').forEach(unhideElement);

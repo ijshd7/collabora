@@ -71,7 +71,11 @@
       var control = panel.querySelector('[data-setting="' + key + '"]');
       if (!control) return;
 
-      control.value = settings[key];
+      if (control.type === 'checkbox') {
+        control.checked = !!settings[key];
+      } else {
+        control.value = settings[key];
+      }
 
       // Update display values
       var valueDisplay = panel.querySelector('[data-value="' + key + '"]');
@@ -99,7 +103,7 @@
     var settings = {};
     panel.querySelectorAll('[data-setting]').forEach(function (control) {
       var key = control.getAttribute('data-setting');
-      var value = control.value;
+      var value = control.type === 'checkbox' ? control.checked : control.value;
 
       // Convert numeric values
       if (control.type === 'range') {
@@ -135,7 +139,7 @@
 
     // Handle settings changes (sliders, selects)
     document.querySelectorAll('[data-setting]').forEach(function (control) {
-      var eventType = control.tagName === 'SELECT' ? 'change' : 'input';
+      var eventType = (control.tagName === 'SELECT' || control.type === 'checkbox') ? 'change' : 'input';
 
       control.addEventListener(eventType, function () {
         // Find parent feature
@@ -143,10 +147,10 @@
         if (!settingsPanel) return;
         var featureId = settingsPanel.getAttribute('data-settings');
 
-        // Update display value
+        // Update display value (skip for checkboxes)
         var key = control.getAttribute('data-setting');
         var valueDisplay = settingsPanel.querySelector('[data-value="' + key + '"]');
-        if (valueDisplay) {
+        if (valueDisplay && control.type !== 'checkbox') {
           valueDisplay.textContent = control.value;
         }
 

@@ -150,6 +150,16 @@ body {
   accent-color: #4A90D9;
 }
 
+.setting--checkbox {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.setting__checkbox {
+  accent-color: #4A90D9;
+  cursor: pointer;
+}
+
 .setting__custom-group {
   margin-top: 4px;
 }
