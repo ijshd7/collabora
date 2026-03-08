@@ -170,7 +170,6 @@
 
     // Apply to all sites
     document.getElementById('apply-all').addEventListener('click', function () {
-      // Save current site settings as global
       var allSettings = {};
       document.querySelectorAll('.toggle__input').forEach(function (toggle) {
         var featureId = toggle.getAttribute('data-toggle');
@@ -179,21 +178,17 @@
         allSettings[featureId] = settings;
       });
 
-      // Write each feature to global storage
-      var promises = Object.keys(allSettings).map(function (featureId) {
-        return new Promise(function (resolve) {
-          chrome.storage.local.get(['global'], function (data) {
-            var global = data.global || {};
-            global[featureId] = allSettings[featureId];
-            chrome.storage.local.set({ global: global }, resolve);
-          });
+      // Single atomic read-modify-write to avoid race conditions
+      chrome.storage.local.get(['global'], function (data) {
+        var global = data.global || {};
+        Object.keys(allSettings).forEach(function (featureId) {
+          global[featureId] = allSettings[featureId];
         });
-      });
-
-      Promise.all(promises).then(function () {
-        var btn = document.getElementById('apply-all');
-        btn.textContent = 'Applied!';
-        setTimeout(function () { btn.textContent = 'Apply to all sites'; }, 1500);
+        chrome.storage.local.set({ global: global }, function () {
+          var btn = document.getElementById('apply-all');
+          btn.textContent = 'Applied!';
+          setTimeout(function () { btn.textContent = 'Apply to all sites'; }, 1500);
+        });
       });
     });
 

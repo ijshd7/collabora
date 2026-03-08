@@ -90,10 +90,9 @@
     },
 
     disable: function () {
-      // Restore GIFs
-      originalGifs.forEach(function (originalSrc, img) {
-        unfreezeGif(img);
-      });
+      // Snapshot keys before iterating — unfreezeGif deletes from the map
+      var imgs = Array.from(originalGifs.keys());
+      imgs.forEach(unfreezeGif);
       originalGifs.clear();
 
       // Restore videos

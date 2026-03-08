@@ -28,5 +28,5 @@ body[data-collabora-reading-ruler="active"] .collabora-ruler-overlay {
 }
 
 .collabora-ruler-band--bottom {
-  bottom: 0;
+  /* Positioned via JS — no fixed bottom anchor needed */
 }

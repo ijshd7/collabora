@@ -9,6 +9,7 @@
   var isPlaying = false;
   var isPaused = false;
   var utterances = [];
+  var chunkOffsets = [];     // start offset of each chunk within totalText
   var currentUtteranceIndex = 0;
   var textNodes = [];       // { node, start, end } — offset map
   var totalText = '';
@@ -45,21 +46,35 @@
 
   /**
    * Split text into sentence-sized chunks (under ~200 chars each to stay well under Chrome's limit).
+   * Returns an array of { text, offset } so highlight offsets stay accurate.
    */
   function chunkText(text) {
     var sentences = text.match(/[^.!?]+[.!?]+\s*/g) || [text];
     var chunks = [];
+    var pos = 0;
+
     var current = '';
+    var currentStart = 0;
 
     sentences.forEach(function (s) {
+      var idx = text.indexOf(s, pos);
+      if (idx === -1) idx = pos;
+
       if (current.length + s.length > 200) {
-        if (current) chunks.push(current.trim());
+        if (current) {
+          chunks.push({ text: current.trim(), offset: currentStart });
+        }
         current = s;
+        currentStart = idx;
       } else {
+        if (!current) currentStart = idx;
         current += s;
       }
+      pos = idx + s.length;
     });
-    if (current.trim()) chunks.push(current.trim());
+    if (current.trim()) {
+      chunks.push({ text: current.trim(), offset: currentStart });
+    }
     return chunks;
   }
 
@@ -69,12 +84,7 @@
   function highlightWord(charIndex, charLength) {
     removeHighlight();
 
-    // Find the text node containing this offset
-    var globalStart = 0;
-    for (var c = 0; c < currentUtteranceIndex; c++) {
-      globalStart += utterances[c].text.length + 1;
-    }
-    var absStart = globalStart + charIndex;
+    var absStart = (chunkOffsets[currentUtteranceIndex] || 0) + charIndex;
     var absEnd = absStart + charLength;
 
     for (var i = 0; i < textNodes.length; i++) {
@@ -165,8 +175,9 @@
     buildTextMap(content);
     var chunks = chunkText(totalText);
 
-    utterances = chunks.map(function (text) {
-      return new SpeechSynthesisUtterance(text);
+    chunkOffsets = chunks.map(function (c) { return c.offset; });
+    utterances = chunks.map(function (c) {
+      return new SpeechSynthesisUtterance(c.text);
     });
 
     currentUtteranceIndex = 0;
@@ -188,6 +199,7 @@
     isPlaying = false;
     isPaused = false;
     currentUtteranceIndex = 0;
+    chunkOffsets = [];
     updateButtonLabel();
   }
 
@@ -196,6 +208,11 @@
     if (btn) {
       btn.textContent = isPlaying ? 'Pause' : 'Play';
     }
+  }
+
+  function onVoiceSelectChange(e) {
+    var voices = speechSynthesis.getVoices();
+    selectedVoice = voices[parseInt(e.target.value, 10)] || null;
   }
 
   function populateVoices(select) {
@@ -210,10 +227,8 @@
       select.appendChild(opt);
     });
 
-    select.addEventListener('change', function () {
-      var voices = speechSynthesis.getVoices();
-      selectedVoice = voices[parseInt(select.value, 10)] || null;
-    });
+    select.removeEventListener('change', onVoiceSelectChange);
+    select.addEventListener('change', onVoiceSelectChange);
   }
 
   function createTTSBar() {

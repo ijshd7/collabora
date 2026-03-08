@@ -71,8 +71,13 @@
     if (changes.global || changes.sites) {
       var siteKey = Collabora.getSiteKey();
       Collabora.storage.getAllForSite(siteKey).then(function (allSettings) {
-        Object.keys(allSettings).forEach(function (id) {
-          var settings = allSettings[id];
+        // Union of stored feature IDs and registered feature IDs ensures
+        // we also disable features that no longer have a storage entry
+        var registered = Collabora.features.getRegistered();
+        var ids = new Set(Object.keys(allSettings).concat(registered));
+
+        ids.forEach(function (id) {
+          var settings = allSettings[id] || {};
           var isActive = Collabora.features.isActive(id);
 
           if (settings.enabled && !isActive) {
