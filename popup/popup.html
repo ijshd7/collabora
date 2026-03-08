@@ -127,6 +127,30 @@
       </div>
     </div>
 
+    <div class="feature" data-feature="link-dimmer">
+      <div class="feature__row">
+        <span class="feature__name">Link Dimmer</span>
+        <label class="toggle">
+          <input type="checkbox" class="toggle__input" data-toggle="link-dimmer" aria-label="Toggle Link Dimmer">
+          <span class="toggle__slider"></span>
+        </label>
+      </div>
+      <div class="feature__settings" data-settings="link-dimmer">
+        <label class="setting">
+          <span class="setting__label">Dim Level</span>
+          <select class="setting__select" data-setting="dimLevel">
+            <option value="subtle">Subtle</option>
+            <option value="moderate" selected>Moderate</option>
+            <option value="heavy">Heavy</option>
+          </select>
+        </label>
+        <label class="setting setting--checkbox">
+          <input type="checkbox" class="setting__checkbox" data-setting="confirmNavigation">
+          <span class="setting__label">Confirm before navigating</span>
+        </label>
+      </div>
+    </div>
+
     <div class="feature" data-feature="focus-timer">
       <div class="feature__row">
         <span class="feature__name">Focus Timer</span>

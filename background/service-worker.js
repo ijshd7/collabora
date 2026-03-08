@@ -17,6 +17,7 @@ chrome.runtime.onInstalled.addListener(function () {
           'progress-indicator': { enabled: false },
           'focus-reader': { enabled: false },
           'focus-timer': { enabled: false },
+          'link-dimmer': { enabled: false },
           'color-contrast': { enabled: false }
         }
       });
@@ -49,7 +50,8 @@ chrome.commands.onCommand.addListener(function (command) {
     'toggle-font-adjuster': 'font-adjuster',
     'toggle-reading-ruler': 'reading-ruler',
     'toggle-focus-reader': 'focus-reader',
-    'toggle-focus-timer': 'focus-timer'
+    'toggle-focus-timer': 'focus-timer',
+    'toggle-link-dimmer': 'link-dimmer'
   };
 
   var featureId = featureMap[command];

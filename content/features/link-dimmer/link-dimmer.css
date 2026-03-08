@@ -1,0 +1,88 @@
+/* Link Dimmer — visually mutes hyperlinks to reduce rabbit-hole impulses */
+
+/* Exclude Collabora's own links (body has data-collabora; exclude links inside other [data-collabora] elements) */
+body[data-collabora-link-dimmer="active"] a:not([data-collabora]):not([data-collabora]:not(body) *) {
+  transition: color 0.15s ease, opacity 0.15s ease, text-decoration 0.15s ease;
+}
+
+/* Subtle: reduce saturation, remove underline on non-hover */
+body[data-collabora-link-dimmer="active"][data-collabora-ld-level="subtle"] a:not([data-collabora]):not([data-collabora]:not(body) *) {
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+body[data-collabora-link-dimmer="active"][data-collabora-ld-level="subtle"] a:not([data-collabora]):not([data-collabora]:not(body) *):hover {
+  text-decoration: underline;
+  opacity: 1;
+}
+
+/* Moderate: inherit body text color, no underline, faint underline on hover */
+body[data-collabora-link-dimmer="active"][data-collabora-ld-level="moderate"] a:not([data-collabora]):not([data-collabora]:not(body) *) {
+  color: inherit !important;
+  text-decoration: none;
+  opacity: 0.85;
+}
+
+body[data-collabora-link-dimmer="active"][data-collabora-ld-level="moderate"] a:not([data-collabora]):not([data-collabora]:not(body) *):hover {
+  text-decoration: underline;
+  opacity: 1;
+}
+
+/* Heavy: fully inherit body text, invisible as links, dotted underline on hover only */
+body[data-collabora-link-dimmer="active"][data-collabora-ld-level="heavy"] a:not([data-collabora]):not([data-collabora]:not(body) *) {
+  color: inherit !important;
+  text-decoration: none;
+  opacity: 0.75;
+}
+
+body[data-collabora-link-dimmer="active"][data-collabora-ld-level="heavy"] a:not([data-collabora]):not([data-collabora]:not(body) *):hover {
+  text-decoration: underline dotted;
+  opacity: 1;
+}
+
+/* Confirm tooltip */
+.collabora-ld-tooltip {
+  position: absolute;
+  z-index: 2147483641;
+  background: #1a1a2e;
+  color: #eee;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.collabora-ld-tooltip__message {
+  margin: 0 0 10px 0;
+}
+
+.collabora-ld-tooltip__buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.collabora-ld-tooltip__btn {
+  border: none;
+  font-family: inherit;
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #333;
+  color: #aaa;
+}
+
+.collabora-ld-tooltip__btn:hover {
+  background: #444;
+  color: #eee;
+}
+
+.collabora-ld-tooltip__btn--primary {
+  background: #4A90D9;
+  color: #fff;
+}
+
+.collabora-ld-tooltip__btn--primary:hover {
+  background: #357ABD;
+}
