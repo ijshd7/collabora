@@ -162,6 +162,21 @@
       <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='100'%3E%3Crect fill='%234A90D9' width='200' height='100' rx='8'/%3E%3Ctext x='50%25' y='50%25' fill='white' text-anchor='middle' dy='.3em' font-family='sans-serif'%3ETest Image%3C/text%3E%3C/svg%3E" alt="Test image for color contrast">
       <p>The image above should remain correctly colored in Cool (inverted) mode.</p>
 
+      <!-- Focus Timer Test -->
+      <h2>8. Focus Timer Test</h2>
+      <p>Enable Focus Timer from the popup. A small countdown badge should appear in the bottom-left corner. Set a short focus duration (5 min) to test the flow. When the timer expires, a notification overlay should appear suggesting a break. Test "Start Break" and "Dismiss" buttons.</p>
+      <ul>
+        <li>Verify the badge shows the countdown in MM:SS format</li>
+        <li>Click Start — badge should switch to active state with Pause/Stop buttons</li>
+        <li>Click Pause — countdown should freeze, button should read "Resume"</li>
+        <li>Click Resume — countdown should continue from where it paused</li>
+        <li>Click Stop — timer should reset to idle state</li>
+        <li>Let the timer complete — notification overlay should appear</li>
+        <li>Click "Start Break" — break countdown should begin</li>
+        <li>Enable "Auto-start break" in popup settings and verify break starts automatically</li>
+        <li>Session dots should accumulate in the badge after each completed focus session</li>
+      </ul>
+
       <!-- Long text for progress testing -->
       <h2>Long Article (Progress Indicator)</h2>
       <div class="long-text">

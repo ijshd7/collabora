@@ -10,6 +10,7 @@ A Chrome extension providing ADHD and cognitive load support. Reduce distraction
 - **Reading Ruler** — A focus overlay that dims everything except the line you're reading, helping maintain your place in long text
 - **Progress Indicator** — Displays a scroll progress bar and estimated read time for the current page
 - **Focus Reader** — Text-to-speech with word-by-word highlighting, powered by the Web Speech API
+- **Focus Timer** — Pomodoro-style session timer with configurable focus/break durations; shows an unobtrusive in-page countdown and gentle break reminders
 - **Color Contrast Adjuster** — Applies CSS filter presets (warm, cool/dark, high contrast, or custom) to improve screen readability
 
 ## Installation
@@ -33,7 +34,7 @@ Click the extension icon to open the popup. Each feature has a toggle switch and
 | `Alt+Shift+F` | Toggle Font Adjuster |
 | `Alt+Shift+R` | Toggle Reading Ruler |
 
-Focus Reader has no default shortcut; assign one at `chrome://extensions/shortcuts`. All shortcuts can be customized there.
+Focus Reader and Focus Timer have no default shortcuts; assign them at `chrome://extensions/shortcuts`. All shortcuts can be customized there.
 
 ## Architecture
 
@@ -57,8 +58,8 @@ All features are independently toggleable and use a shared registration system (
 
 ## Testing
 
-- **Automated:** Run `npm test` for the Jest unit test suite (site-key, storage, feature-manager, dom-helpers, distraction-blocker, service-worker).
-- **Manual:** Open `tests/manual/test-page.html` in the browser with the extension loaded. The page includes test sections for each feature: animated elements, fake ads, comments, long-form text, autoplay media, and color test images.
+- **Automated:** Run `npm test` for the Jest unit test suite (site-key, storage, feature-manager, dom-helpers, distraction-blocker, focus-timer, service-worker).
+- **Manual:** Open `tests/manual/test-page.html` in the browser with the extension loaded. The page includes test sections for each feature: animated elements, fake ads, comments, long-form text, autoplay media, color test images, and focus timer.
 
 ## License
 

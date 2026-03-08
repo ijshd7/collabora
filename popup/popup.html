@@ -127,6 +127,30 @@
       </div>
     </div>
 
+    <div class="feature" data-feature="focus-timer">
+      <div class="feature__row">
+        <span class="feature__name">Focus Timer</span>
+        <label class="toggle">
+          <input type="checkbox" class="toggle__input" data-toggle="focus-timer" aria-label="Toggle Focus Timer">
+          <span class="toggle__slider"></span>
+        </label>
+      </div>
+      <div class="feature__settings" data-settings="focus-timer">
+        <label class="setting">
+          <span class="setting__label">Focus: <span data-value="focusDuration">25</span> min</span>
+          <input type="range" class="setting__range" data-setting="focusDuration" min="5" max="60" step="5" value="25">
+        </label>
+        <label class="setting">
+          <span class="setting__label">Break: <span data-value="breakDuration">5</span> min</span>
+          <input type="range" class="setting__range" data-setting="breakDuration" min="1" max="15" step="1" value="5">
+        </label>
+        <label class="setting setting--checkbox">
+          <input type="checkbox" class="setting__checkbox" data-setting="autoStartBreak">
+          <span class="setting__label">Auto-start break</span>
+        </label>
+      </div>
+    </div>
+
     <div class="feature" data-feature="color-contrast">
       <div class="feature__row">
         <span class="feature__name">Color Contrast</span>

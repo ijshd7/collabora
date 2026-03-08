@@ -51,6 +51,9 @@
     },
     "toggle-focus-reader": {
       "description": "Toggle Focus Reader"
+    },
+    "toggle-focus-timer": {
+      "description": "Toggle Focus Timer"
     }
   },
 
@@ -65,6 +68,7 @@
         "content/features/reading-ruler/reading-ruler.css",
         "content/features/progress-indicator/progress-indicator.css",
         "content/features/focus-reader/focus-reader.css",
+        "content/features/focus-timer/focus-timer.css",
         "content/features/color-contrast/color-contrast.css"
       ],
       "js": [
@@ -79,6 +83,7 @@
         "content/features/progress-indicator/progress-indicator.js",
         "content/features/focus-reader/focus-reader.js",
         "content/features/color-contrast/color-contrast.js",
+        "content/features/focus-timer/focus-timer.js",
         "content/bootstrap.js"
       ],
       "run_at": "document_idle"

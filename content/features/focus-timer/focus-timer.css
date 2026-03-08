@@ -1,0 +1,156 @@
+/* Focus Timer — in-page countdown badge and break notification */
+
+/* --- Badge --- */
+
+.collabora-timer-badge {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  z-index: 2147483637;
+  display: none;
+  align-items: center;
+  gap: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  color: #fff;
+  background: rgba(26, 26, 46, 0.92);
+  padding: 6px 12px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  user-select: none;
+}
+
+body[data-collabora-focus-timer="active"] .collabora-timer-badge {
+  display: flex;
+}
+
+.collabora-timer-badge__time {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  min-width: 48px;
+  text-align: center;
+}
+
+.collabora-timer-badge__dots {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.collabora-timer-badge__dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4A90D9;
+}
+
+.collabora-timer-badge__controls {
+  display: flex;
+  gap: 4px;
+}
+
+.collabora-timer-badge__btn {
+  border: none;
+  background: #4A90D9;
+  color: #fff;
+  font-size: 11px;
+  font-family: inherit;
+  padding: 3px 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  line-height: 1.4;
+}
+
+.collabora-timer-badge__btn:hover {
+  background: #357ABD;
+}
+
+.collabora-timer-badge__btn--stop {
+  background: #555;
+}
+
+.collabora-timer-badge__btn--stop:hover {
+  background: #777;
+}
+
+/* Subtle mode indicator color on the badge border */
+.collabora-timer-badge[data-collabora-timer-mode="focus"] {
+  border: 1px solid #4A90D9;
+}
+
+.collabora-timer-badge[data-collabora-timer-mode="break"] {
+  border: 1px solid #5cb85c;
+}
+
+.collabora-timer-badge[data-collabora-timer-mode="paused"] {
+  border: 1px solid #f0ad4e;
+}
+
+.collabora-timer-badge[data-collabora-timer-mode="idle"] {
+  border: 1px solid transparent;
+}
+
+/* --- Notification overlay --- */
+
+.collabora-timer-notification {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483641;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body[data-collabora-focus-timer="active"] .collabora-timer-notification {
+  display: flex;
+}
+
+.collabora-timer-notification__card {
+  background: #1a1a2e;
+  color: #eee;
+  border-radius: 12px;
+  padding: 28px 36px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  max-width: 380px;
+}
+
+.collabora-timer-notification__message {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.collabora-timer-notification__buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.collabora-timer-notification__btn {
+  border: none;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 8px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #333;
+  color: #aaa;
+}
+
+.collabora-timer-notification__btn:hover {
+  background: #444;
+  color: #eee;
+}
+
+.collabora-timer-notification__btn--primary {
+  background: #4A90D9;
+  color: #fff;
+}
+
+.collabora-timer-notification__btn--primary:hover {
+  background: #357ABD;
+}
