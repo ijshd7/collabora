@@ -8,15 +8,18 @@
 </head>
 <body>
   <header class="header">
-    <h1 class="header__title">Collabora</h1>
+    <div class="header__brand">
+      <h1 class="header__title">Collabora</h1>
+      <span class="header__tagline">Reading & Focus Support</span>
+    </div>
     <span class="header__site" id="site-key"></span>
   </header>
 
   <main class="features" id="features-list">
     <!-- Phase 1 -->
-    <div class="feature" data-feature="motion-reducer">
+    <div class="feature feature-card" data-feature="motion-reducer">
       <div class="feature__row">
-        <span class="feature__name">Motion Reducer</span>
+        <span class="feature__name"><span class="feature__icon">⏸️</span> Motion Reducer</span>
         <label class="toggle">
           <input type="checkbox" class="toggle__input" data-toggle="motion-reducer" aria-label="Toggle Motion Reducer">
           <span class="toggle__slider"></span>
@@ -24,9 +27,9 @@
       </div>
     </div>
 
-    <div class="feature" data-feature="distraction-blocker">
+    <div class="feature feature-card" data-feature="distraction-blocker">
       <div class="feature__row">
-        <span class="feature__name">Distraction Blocker</span>
+        <span class="feature__name"><span class="feature__icon">🛡️</span> Distraction Blocker</span>
         <label class="toggle">
           <input type="checkbox" class="toggle__input" data-toggle="distraction-blocker" aria-label="Toggle Distraction Blocker">
           <span class="toggle__slider"></span>
@@ -48,9 +51,9 @@
       </div>
     </div>
 
-    <div class="feature" data-feature="font-adjuster">
+    <div class="feature feature-card" data-feature="font-adjuster">
       <div class="feature__row">
-        <span class="feature__name">Font Adjuster</span>
+        <span class="feature__name"><span class="feature__icon">🔤</span> Font Adjuster</span>
         <label class="toggle">
           <input type="checkbox" class="toggle__input" data-toggle="font-adjuster" aria-label="Toggle Font Adjuster">
           <span class="toggle__slider"></span>
@@ -78,9 +81,9 @@
       </div>
     </div>
 
-    <div class="feature" data-feature="reading-ruler">
+    <div class="feature feature-card" data-feature="reading-ruler">
       <div class="feature__row">
-        <span class="feature__name">Reading Ruler</span>
+        <span class="feature__name"><span class="feature__icon">📏</span> Reading Ruler</span>
         <label class="toggle">
           <input type="checkbox" class="toggle__input" data-toggle="reading-ruler" aria-label="Toggle Reading Ruler">
           <span class="toggle__slider"></span>
@@ -98,9 +101,9 @@
       </div>
     </div>
 
-    <div class="feature" data-feature="progress-indicator">
+    <div class="feature feature-card" data-feature="progress-indicator">
       <div class="feature__row">
-        <span class="feature__name">Progress Indicator</span>
+        <span class="feature__name"><span class="feature__icon">📊</span> Progress Indicator</span>
         <label class="toggle">
           <input type="checkbox" class="toggle__input" data-toggle="progress-indicator" aria-label="Toggle Progress Indicator">
           <span class="toggle__slider"></span>
@@ -111,9 +114,9 @@
     <!-- Phase 2 divider -->
     <div class="divider">Focus Tools</div>
 
-    <div class="feature" data-feature="focus-reader">
+    <div class="feature feature-card" data-feature="focus-reader">
       <div class="feature__row">
-        <span class="feature__name">Focus Reader (TTS)</span>
+        <span class="feature__name"><span class="feature__icon">🔊</span> Focus Reader (TTS)</span>
         <label class="toggle">
           <input type="checkbox" class="toggle__input" data-toggle="focus-reader" aria-label="Toggle Focus Reader">
           <span class="toggle__slider"></span>
@@ -127,9 +130,9 @@
       </div>
     </div>
 
-    <div class="feature" data-feature="link-dimmer">
+    <div class="feature feature-card" data-feature="link-dimmer">
       <div class="feature__row">
-        <span class="feature__name">Link Dimmer</span>
+        <span class="feature__name"><span class="feature__icon">🔗</span> Link Dimmer</span>
         <label class="toggle">
           <input type="checkbox" class="toggle__input" data-toggle="link-dimmer" aria-label="Toggle Link Dimmer">
           <span class="toggle__slider"></span>
@@ -151,9 +154,9 @@
       </div>
     </div>
 
-    <div class="feature" data-feature="focus-timer">
+    <div class="feature feature-card" data-feature="focus-timer">
       <div class="feature__row">
-        <span class="feature__name">Focus Timer</span>
+        <span class="feature__name"><span class="feature__icon">⏱️</span> Focus Timer</span>
         <label class="toggle">
           <input type="checkbox" class="toggle__input" data-toggle="focus-timer" aria-label="Toggle Focus Timer">
           <span class="toggle__slider"></span>
@@ -175,9 +178,9 @@
       </div>
     </div>
 
-    <div class="feature" data-feature="color-contrast">
+    <div class="feature feature-card" data-feature="color-contrast">
       <div class="feature__row">
-        <span class="feature__name">Color Contrast</span>
+        <span class="feature__name"><span class="feature__icon">🎨</span> Color Contrast</span>
         <label class="toggle">
           <input type="checkbox" class="toggle__input" data-toggle="color-contrast" aria-label="Toggle Color Contrast">
           <span class="toggle__slider"></span>

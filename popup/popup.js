@@ -14,7 +14,11 @@
   function sendMessage(msg) {
     return new Promise(function (resolve) {
       chrome.runtime.sendMessage(msg, function (response) {
-        resolve(response || {});
+        if (chrome.runtime.lastError) {
+          resolve({ error: chrome.runtime.lastError.message });
+        } else {
+          resolve(response || {});
+        }
       });
     });
   }
@@ -55,6 +59,10 @@
     var panel = document.querySelector('[data-settings="' + featureId + '"]');
     if (panel) {
       panel.classList.toggle('is-visible', isActive);
+    }
+    var card = document.querySelector('[data-feature="' + featureId + '"]');
+    if (card) {
+      card.classList.toggle('is-active', isActive);
     }
   }
 

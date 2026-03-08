@@ -1,13 +1,20 @@
 /* Collabora — Base CSS custom properties and shared styles */
 
 [data-collabora] {
-  --collabora-accent: #4A90D9;
-  --collabora-accent-hover: #357ABD;
-  --collabora-bg: #1a1a2e;
-  --collabora-bg-light: #2a2a4e;
-  --collabora-text: #eeeeee;
-  --collabora-text-muted: #aaaaaa;
-  --collabora-radius: 6px;
+  --collabora-accent: #2DD4BF;
+  --collabora-accent-hover: #14B8A6;
+  --collabora-accent-active: #0D9488;
+  --collabora-accent-gradient: linear-gradient(135deg, #2DD4BF, #06B6D4);
+  --collabora-bg: #0f0f1a;
+  --collabora-bg-light: rgba(255, 255, 255, 0.04);
+  --collabora-bg-elevated: rgba(255, 255, 255, 0.07);
+  --collabora-glass: rgba(255, 255, 255, 0.04);
+  --collabora-glass-border: rgba(255, 255, 255, 0.06);
+  --collabora-text: #f0f0f5;
+  --collabora-text-muted: #9ca3af;
+  --collabora-radius: 10px;
+  --collabora-radius-sm: 8px;
+  --collabora-radius-pill: 20px;
   --collabora-z-progress: 2147483640;
   --collabora-z-ruler: 2147483639;
   --collabora-z-tts: 2147483638;

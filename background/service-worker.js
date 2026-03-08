@@ -32,7 +32,11 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       if (tabs[0]) {
         chrome.tabs.sendMessage(tabs[0].id, msg, function (response) {
-          sendResponse(response);
+          if (chrome.runtime.lastError) {
+            sendResponse({ error: chrome.runtime.lastError.message });
+          } else {
+            sendResponse(response);
+          }
         });
       } else {
         sendResponse({ error: 'No active tab' });
