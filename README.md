@@ -1,5 +1,7 @@
 # Collabora — Reading & Focus Suite
 
+[![CI](https://github.com/ijshd7/collabora/actions/workflows/test.yml/badge.svg)](https://github.com/ijshd7/collabora/actions/workflows/test.yml)
+
 A Chrome extension providing ADHD and cognitive load support. Reduce distractions, improve readability, and maintain focus while reading online.
 
 ## Features
