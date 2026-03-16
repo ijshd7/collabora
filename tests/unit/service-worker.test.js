@@ -68,13 +68,14 @@ describe('service-worker', () => {
   });
 
   describe('onCommand', () => {
-    it('sends TOGGLE_FEATURE for known commands', (done) => {
+    it('sends TOGGLE_FEATURE for known commands with lastError callback', (done) => {
       chrome.tabs.sendMessage.mockClear();
       chrome._listeners.onCommand('toggle-distraction-blocker');
       setTimeout(() => {
         expect(chrome.tabs.sendMessage).toHaveBeenCalledWith(
           1,
-          { type: 'TOGGLE_FEATURE', featureId: 'distraction-blocker' }
+          { type: 'TOGGLE_FEATURE', featureId: 'distraction-blocker' },
+          expect.any(Function)
         );
         done();
       }, 10);

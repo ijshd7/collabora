@@ -218,6 +218,51 @@ describe('link-dimmer', () => {
     });
   });
 
+  describe('escape key', () => {
+    it('dismisses tooltip when Escape is pressed', () => {
+      document.body.innerHTML = '<a href="https://example.com">Link</a>';
+      Collabora.features.enable('link-dimmer', { confirmNavigation: true });
+      const link = document.querySelector('a');
+      link.click();
+      expect(document.querySelector('.collabora-ld-tooltip')).not.toBeNull();
+
+      document.dispatchEvent(
+        new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })
+      );
+      expect(document.querySelector('.collabora-ld-tooltip')).toBeNull();
+
+      Collabora.features.disable('link-dimmer');
+    });
+
+    it('does nothing when Escape is pressed and no tooltip is visible', () => {
+      document.body.innerHTML = '<a href="https://example.com">Link</a>';
+      Collabora.features.enable('link-dimmer', { confirmNavigation: true });
+
+      // No tooltip shown yet — Escape should not throw
+      document.dispatchEvent(
+        new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })
+      );
+      expect(document.querySelector('.collabora-ld-tooltip')).toBeNull();
+
+      Collabora.features.disable('link-dimmer');
+    });
+  });
+
+  describe('aria attributes', () => {
+    it('tooltip has role="dialog" and aria-label', () => {
+      document.body.innerHTML = '<a href="https://example.com">Link</a>';
+      Collabora.features.enable('link-dimmer', { confirmNavigation: true });
+      const link = document.querySelector('a');
+      link.click();
+
+      const tooltip = document.querySelector('.collabora-ld-tooltip');
+      expect(tooltip.getAttribute('role')).toBe('dialog');
+      expect(tooltip.getAttribute('aria-label')).toBe('Confirm navigation');
+
+      Collabora.features.disable('link-dimmer');
+    });
+  });
+
   describe('update confirmNavigation', () => {
     it('attaches handler when confirmNavigation changes from false to true', () => {
       Collabora.features.enable('link-dimmer', { confirmNavigation: false });

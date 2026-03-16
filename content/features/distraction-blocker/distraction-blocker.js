@@ -58,7 +58,9 @@
   }
 
   function neutralizeFloaters() {
-    document.querySelectorAll('*').forEach(function (el) {
+    // Target common floater elements instead of scanning every DOM node
+    var selectors = 'div, aside, section, footer, header, nav, [role="banner"], [role="dialog"], [role="alertdialog"], [class*="popup"], [class*="modal"], [class*="overlay"], [class*="banner"], [class*="sticky"], [class*="fixed"], [class*="float"]';
+    document.querySelectorAll(selectors).forEach(function (el) {
       if (el.hasAttribute('data-collabora')) return;
       var computed = getComputedStyle(el);
       if (computed.position !== 'fixed' && computed.position !== 'sticky') return;

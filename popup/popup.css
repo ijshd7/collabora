@@ -148,6 +148,11 @@ body {
   transition: transform 0.2s ease;
 }
 
+.toggle__input:focus-visible + .toggle__slider {
+  outline: 2px solid #2DD4BF;
+  outline-offset: 2px;
+}
+
 .toggle__input:checked + .toggle__slider {
   background: #2DD4BF;
   box-shadow: 0 0 12px rgba(45, 212, 191, 0.4);
@@ -218,6 +223,12 @@ body {
   accent-color: #2DD4BF;
 }
 
+.setting__range:focus-visible {
+  outline: 2px solid #2DD4BF;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 .setting--checkbox {
   flex-direction: row-reverse;
   justify-content: flex-end;
@@ -226,6 +237,11 @@ body {
 .setting__checkbox {
   accent-color: #2DD4BF;
   cursor: pointer;
+}
+
+.setting__checkbox:focus-visible {
+  outline: 2px solid #2DD4BF;
+  outline-offset: 2px;
 }
 
 .setting__custom-group {
@@ -267,6 +283,11 @@ body {
 
 .footer__btn:hover {
   box-shadow: 0 0 16px rgba(45, 212, 191, 0.4);
+}
+
+.footer__btn:focus-visible {
+  outline: 2px solid #2DD4BF;
+  outline-offset: 2px;
 }
 
 .footer__btn:active {

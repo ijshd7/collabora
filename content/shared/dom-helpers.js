@@ -22,8 +22,6 @@
           el.className = attrs[key];
         } else if (key === 'textContent') {
           el.textContent = attrs[key];
-        } else if (key === 'innerHTML') {
-          el.innerHTML = attrs[key];
         } else if (key.startsWith('on')) {
           el.addEventListener(key.slice(2).toLowerCase(), attrs[key]);
         } else {

@@ -37,6 +37,12 @@ describe('Collabora.dom.create', () => {
     el.click();
     expect(handler).toHaveBeenCalled();
   });
+
+  it('does not support innerHTML to prevent XSS', () => {
+    const el = Collabora.dom.create('div', { innerHTML: '<img src=x onerror=alert(1)>' });
+    expect(el.innerHTML).toBe('');
+    expect(el.getAttribute('innerHTML')).toBe('<img src=x onerror=alert(1)>');
+  });
 });
 
 describe('Collabora.dom.addStyle and removeStyle', () => {

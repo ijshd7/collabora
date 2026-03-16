@@ -204,6 +204,23 @@ describe('focus-timer', () => {
       const message = notif.querySelector('.collabora-timer-notification__message');
       expect(message.textContent).toContain('Break over');
     });
+
+    it('Escape key dismisses the notification', () => {
+      completeSession();
+      expect(document.querySelector('.collabora-timer-notification')).not.toBeNull();
+
+      document.dispatchEvent(
+        new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })
+      );
+      expect(document.querySelector('.collabora-timer-notification')).toBeNull();
+    });
+
+    it('notification has role="alertdialog" and aria-modal', () => {
+      completeSession();
+      const notif = document.querySelector('.collabora-timer-notification');
+      expect(notif.getAttribute('role')).toBe('alertdialog');
+      expect(notif.getAttribute('aria-modal')).toBe('true');
+    });
   });
 
   describe('pause and resume', () => {

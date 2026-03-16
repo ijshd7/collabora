@@ -28,14 +28,16 @@
       filter = PRESETS[mode] || PRESETS.warm;
     }
 
-    document.body.style.setProperty('filter', filter, 'important');
-    // Ensure background covers the viewport when filter is applied
-    document.body.style.setProperty('min-height', '100vh');
+    // Apply filter to <html> instead of <body> so that position:fixed
+    // elements (reading ruler, timer badge, TTS bar, progress bar)
+    // remain anchored to the viewport.
+    document.documentElement.style.setProperty('filter', filter, 'important');
+    document.documentElement.style.setProperty('min-height', '100vh');
   }
 
   function clearFilter() {
-    document.body.style.removeProperty('filter');
-    document.body.style.removeProperty('min-height');
+    document.documentElement.style.removeProperty('filter');
+    document.documentElement.style.removeProperty('min-height');
     document.body.removeAttribute('data-collabora-cc-mode');
   }
 

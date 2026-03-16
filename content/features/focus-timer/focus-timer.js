@@ -200,11 +200,12 @@
     }
 
     if (dotsEl) {
-      var dotHtml = '';
+      while (dotsEl.firstChild) { dotsEl.removeChild(dotsEl.firstChild); }
       for (var i = 0; i < sessionCount; i++) {
-        dotHtml += '<span class="collabora-timer-badge__dot"></span>';
+        var dot = document.createElement('span');
+        dot.className = 'collabora-timer-badge__dot';
+        dotsEl.appendChild(dot);
       }
-      dotsEl.innerHTML = dotHtml;
     }
 
     if (startBtn) {
@@ -228,7 +229,10 @@
 
     var backdrop = Collabora.dom.create('div', {
       className: 'collabora-timer-notification',
-      'data-collabora': 'true'
+      'data-collabora': 'true',
+      role: 'alertdialog',
+      'aria-modal': 'true',
+      'aria-label': message
     });
 
     var card = Collabora.dom.create('div', {
@@ -258,6 +262,14 @@
     backdrop.appendChild(card);
     document.body.appendChild(backdrop);
     notification = backdrop;
+
+    document.addEventListener('keydown', handleNotificationEscape);
+  }
+
+  function handleNotificationEscape(e) {
+    if (e.key === 'Escape' && notification) {
+      dismissNotification();
+    }
   }
 
   function dismissNotification() {
@@ -265,6 +277,7 @@
       notification.remove();
       notification = null;
     }
+    document.removeEventListener('keydown', handleNotificationEscape);
   }
 
   // --- Feature registration ---

@@ -37,6 +37,13 @@
       tooltip.remove();
       tooltip = null;
     }
+    document.removeEventListener('keydown', handleEscapeKey);
+  }
+
+  function handleEscapeKey(e) {
+    if (e.key === 'Escape' && tooltip) {
+      removeTooltip();
+    }
   }
 
   function showConfirmTooltip(link, e) {
@@ -44,7 +51,9 @@
 
     tooltip = Collabora.dom.create('div', {
       className: 'collabora-ld-tooltip',
-      'data-collabora': 'true'
+      'data-collabora': 'true',
+      role: 'dialog',
+      'aria-label': 'Confirm navigation'
     });
 
     var msg = Collabora.dom.create('p', {
@@ -83,6 +92,8 @@
     tooltip.appendChild(btnRow);
     document.body.appendChild(tooltip);
 
+    document.addEventListener('keydown', handleEscapeKey);
+
     var rect = link.getBoundingClientRect();
     var scrollX = window.scrollX || document.documentElement.scrollLeft;
     var scrollY = window.scrollY || document.documentElement.scrollTop;
@@ -90,6 +101,19 @@
     tooltip.style.position = 'absolute';
     tooltip.style.left = (rect.left + scrollX) + 'px';
     tooltip.style.top = (rect.bottom + scrollY + 4) + 'px';
+
+    // Adjust if tooltip overflows viewport
+    requestAnimationFrame(function () {
+      if (!tooltip) return;
+      var tipRect = tooltip.getBoundingClientRect();
+
+      if (tipRect.right > window.innerWidth) {
+        tooltip.style.left = Math.max(0, window.innerWidth - tipRect.width + scrollX - 8) + 'px';
+      }
+      if (tipRect.bottom > window.innerHeight) {
+        tooltip.style.top = (rect.top + scrollY - tipRect.height - 4) + 'px';
+      }
+    });
   }
 
   function handleLinkClick(e) {

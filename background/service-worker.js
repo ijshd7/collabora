@@ -66,6 +66,10 @@ chrome.commands.onCommand.addListener(function (command) {
       chrome.tabs.sendMessage(tabs[0].id, {
         type: 'TOGGLE_FEATURE',
         featureId: featureId
+      }, function () {
+        // Check lastError to suppress "Could not establish connection"
+        // on pages where the content script is not injected (e.g. chrome://)
+        if (chrome.runtime.lastError) { /* intentionally ignored */ }
       });
     }
   });

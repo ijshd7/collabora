@@ -22,6 +22,14 @@
   function handleKeyDown(e) {
     if (!overlay) return;
 
+    // Escape key dismisses the reading ruler
+    if (e.key === 'Escape') {
+      var siteKey = Collabora.getSiteKey();
+      Collabora.features.disable('reading-ruler');
+      Collabora.storage.setFeatureSettings('reading-ruler', siteKey, { enabled: false });
+      return;
+    }
+
     // Arrow keys for keyboard-mode ruler movement
     if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
       var lineStep = parseInt(getComputedStyle(document.body).lineHeight, 10) || 24;
